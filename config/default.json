@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://ammar123:ammar1234@devconnector-sgoa6.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "Nahi Batana!"
+}
