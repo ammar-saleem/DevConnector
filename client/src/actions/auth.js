@@ -8,6 +8,7 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  CLEAR_PROFILE,
   LOGOUT,
 } from './constants';
 
@@ -63,7 +64,7 @@ export const login = (email, password) => async (dispatch) => {
   const body = JSON.stringify({ email, password });
   try {
     const res = await axios.post('/api/auth', body, config);
-
+    console.log(res.data);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data,
@@ -83,5 +84,8 @@ export const login = (email, password) => async (dispatch) => {
 export const logout = () => (dispatch) => {
   dispatch({
     type: LOGOUT,
+  });
+  dispatch({
+    type: CLEAR_PROFILE,
   });
 };

@@ -11,7 +11,7 @@ const router = express.Router();
 router.get('/', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password');
-    res.send({ user });
+    res.json(user);
   } catch (e) {
     console.log(e.message);
     res.status(500).send('Server Error');
@@ -54,7 +54,7 @@ router.post(
         { expiresIn: 360000 },
         (err, token) => {
           if (err) throw err;
-          res.send({ token, user });
+          res.status(200).json({ token, user });
         }
       );
     } catch (error) {
