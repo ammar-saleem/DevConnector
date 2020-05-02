@@ -47,7 +47,7 @@ const Experience = ({ experience, removeExperience }) => {
 };
 
 Experience.propTypes = {
-  experience: PropTypes.array.isRequired,
+  experience: PropTypes.array,
   removeExperience: PropTypes.func.isRequired,
 };
 
