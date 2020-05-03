@@ -7,7 +7,7 @@
     "node": "12.16.3"
   },
   "scripts": {
-    "start": "npm install && node server.js",
+    "start": "SET NODE_ENV=production&& node server.js",
     "server": "nodemon server",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
