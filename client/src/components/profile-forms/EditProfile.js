@@ -60,7 +60,7 @@ const EditProfile = ({
       youtube: loading || !profile.social ? '' : profile.social.youtube,
       instagram: loading || !profile.social ? '' : profile.social.instagram,
     });
-  }, [loading, getProfile, profile]);
+  }, [loading, getProfile]);
 
   const onChange = (e) =>
     setFormState({ ...formData, [e.target.name]: e.target.value });
@@ -236,7 +236,7 @@ const EditProfile = ({
 
         <input type='submit' className='btn btn-primary my-1' />
         <Link className='btn btn-light my-1' to='/dashboard'>
-          Go Back
+          Go to Dashboard
         </Link>
       </form>
     </Fragment>

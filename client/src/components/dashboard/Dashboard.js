@@ -1,4 +1,5 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect, Fragment, useState } from 'react';
+import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Spinner from '../layout/Spinner';
@@ -18,6 +19,18 @@ const Dashboard = ({
     getProfile();
   }, [getProfile]);
 
+  const [modalIsOpen, setModelIsOpen] = useState(false);
+
+  Modal.setAppElement('#root');
+
+  const closeModalYes = () => {
+    deleteAccount();
+    setModelIsOpen(false);
+  };
+  const closeModal = () => {
+    setModelIsOpen(false);
+  };
+
   return loading && profile === null ? (
     <Spinner />
   ) : (
@@ -31,9 +44,11 @@ const Dashboard = ({
           <DashboardActions />
           <Experience experience={profile.experience} />
           <Education education={profile.education} />
-
           <div className='my-2'>
-            <button className='btn btn-danger' onClick={() => deleteAccount()}>
+            <button
+              className='btn btn-danger'
+              onClick={() => setModelIsOpen(true)}
+            >
               <i className='fas fa-user-minus' /> Delete My Account
             </button>
           </div>
@@ -44,8 +59,31 @@ const Dashboard = ({
           <Link to='/create-profile' className='btn btn-primary my-1'>
             Create Profile
           </Link>
+          <div className='my-2'>
+            <button
+              className='btn btn-danger'
+              onClick={() => setModelIsOpen(true)}
+            >
+              <i className='fas fa-user-minus' /> Delete My Account
+            </button>
+          </div>
         </Fragment>
       )}
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        className='modal'
+        closeTimeoutMS={200}
+        contentLabel='Confirm Delete Account'
+      >
+        <h3 className='modal__title'>Are you sure about this?</h3>
+        <button className='btn btn-light my-1' onClick={closeModalYes}>
+          <i className='fas fa-check'></i> Yes
+        </button>
+        <button onClick={closeModal} className='btn btn-light my-1'>
+          <i className='fas fa-times'></i> No
+        </button>
+      </Modal>
     </Fragment>
   );
 };
