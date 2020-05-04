@@ -5,6 +5,7 @@ import {
   PROFILE_ERROR,
   CLEAR_PROFILE,
   UPDATE_PROFILE,
+  GET_PROFILE_BY_ID,
 } from '../actions/constants';
 
 const initialState = {
@@ -13,6 +14,7 @@ const initialState = {
   repos: [],
   loading: true,
   errors: {},
+  profilebyid: {},
 };
 
 export default (state = initialState, action) => {
@@ -26,6 +28,13 @@ export default (state = initialState, action) => {
         profile: payload,
         loading: false,
       };
+    case GET_PROFILE_BY_ID:
+      return {
+        ...state,
+        profilebyid: payload,
+        loading: false,
+      };
+
     case GET_PROFILES:
       return {
         ...state,

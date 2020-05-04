@@ -7,6 +7,7 @@ import {
   UPDATE_PROFILE,
   CLEAR_PROFILE,
   ACCOUNT_DELETED,
+  GET_PROFILE_BY_ID,
 } from './constants';
 import { setAlert } from './alert';
 
@@ -44,7 +45,7 @@ export const getProfileById = (userId) => async (dispatch) => {
   try {
     const res = await axios.get(`/api/profile/${userId}`);
     dispatch({
-      type: GET_PROFILE,
+      type: GET_PROFILE_BY_ID,
       payload: res.data,
     });
   } catch (err) {

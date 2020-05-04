@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
 const Profile = ({
   getProfileById,
   match,
-  profile: { profile, loading },
+  profile: { profilebyid, loading },
   auth,
 }) => {
   useEffect(() => {
@@ -21,7 +21,7 @@ const Profile = ({
   }, [getProfileById, match.params.id]);
   return (
     <Fragment>
-      {profile === null || loading ? (
+      {profilebyid === null || loading ? (
         <Spinner />
       ) : (
         <Fragment>
@@ -30,19 +30,19 @@ const Profile = ({
           </Link>
           {auth.isAuthenticated &&
             !auth.loading &&
-            auth.user._id === profile.user._id && (
+            auth.user._id === profilebyid.user._id && (
               <Link to='/edit-profile' className='btn btn-dark'>
                 Edit Profile
               </Link>
             )}
           <div className='profile-grid my-1'>
-            <ProfileTop profile={profile} />
-            <ProfileAbout profile={profile} />
+            <ProfileTop profile={profilebyid} />
+            <ProfileAbout profile={profilebyid} />
             <div className='profile-exp bg-white p-2'>
               <h2 className='text-primary'>Experience</h2>
-              {profile.experience.length > 0 ? (
+              {profilebyid.experience.length > 0 ? (
                 <Fragment>
-                  {profile.experience.map((experience) => (
+                  {profilebyid.experience.map((experience) => (
                     <ProfileExperience
                       key={experience._id}
                       experience={experience}
@@ -56,9 +56,9 @@ const Profile = ({
 
             <div className='profile-edu bg-white p-2'>
               <h2 className='text-primary'>Education</h2>
-              {profile.education.length > 0 ? (
+              {profilebyid.education.length > 0 ? (
                 <Fragment>
-                  {profile.education.map((education) => (
+                  {profilebyid.education.map((education) => (
                     <ProfileEducation
                       key={education._id}
                       education={education}
@@ -69,8 +69,8 @@ const Profile = ({
                 <h4>No Education Credentials</h4>
               )}
             </div>
-            {profile.githubusername && (
-              <ProfileGithub username={profile.githubusername} />
+            {profilebyid.githubusername && (
+              <ProfileGithub username={profilebyid.githubusername} />
             )}
           </div>
         </Fragment>
