@@ -8,6 +8,7 @@ import {
   CLEAR_PROFILE,
   ACCOUNT_DELETED,
   GET_PROFILE_BY_ID,
+  CLEAR_PROFILE_BY_ID,
 } from './constants';
 import { setAlert } from './alert';
 
@@ -27,6 +28,7 @@ export const getProfile = () => async (dispatch) => {
 };
 
 export const getAllProfiles = () => async (dispatch) => {
+  dispatch({ type: CLEAR_PROFILE_BY_ID });
   try {
     const res = await axios.get('/api/profile');
     dispatch({

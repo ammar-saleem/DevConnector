@@ -6,6 +6,7 @@ import {
   CLEAR_PROFILE,
   UPDATE_PROFILE,
   GET_PROFILE_BY_ID,
+  CLEAR_PROFILE_BY_ID,
 } from '../actions/constants';
 
 const initialState = {
@@ -57,6 +58,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         profile: null,
+        repos: [],
+        loading: false,
+      };
+    case CLEAR_PROFILE_BY_ID:
+      return {
+        ...state,
+        profilebyid: null,
         repos: [],
         loading: false,
       };
